@@ -6,8 +6,10 @@ use App\Http\Requests\CreateBeritaRequest;
 use App\Http\Requests\UpdateBeritaRequest;
 use App\Repositories\BeritaRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Berita;
 use Illuminate\Http\Request;
 use Flash;
+use Laracasts\Flash\Flash as FlashFlash;
 use Response;
 
 class BeritaController extends AppBaseController
@@ -54,11 +56,22 @@ class BeritaController extends AppBaseController
      */
     public function store(CreateBeritaRequest $request)
     {
-        $input = $request->all();
+        $date = date('d-m-y');
 
-        $berita = $this->beritaRepository->create($input);
-
-        Flash::success('Berita saved successfully.');
+        $berita = new Berita();
+        $berita->tittle = $request->tittle;
+        $berita->desc = $request->desc;
+        // function file upload
+        if ($request->has('photo')){
+            $photo = $request->file('photo');
+            $filename = $date.'-'.$photo->getClientOriginalName();
+            $ext = $photo->getClientOriginalExtension();
+            $destinationPath = 'uploads';
+            $berita->photo = $photo->move($destinationPath,$photo->getClientOriginalName());
+            $berita->save();
+        }
+        $berita->save();
+        FlashFlash::success('Berita saved successfully.');
 
         return redirect(route('beritas.index'));
     }

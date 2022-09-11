@@ -3,8 +3,8 @@
         <thead>
         <tr>
             <th>Tittle</th>
-        <th>Desc</th>
-        <th>Photo</th>
+            <th>Thumbnail</th>
+            <th>Desc</th>
             <th colspan="3">Action</th>
         </tr>
         </thead>
@@ -12,8 +12,8 @@
         @foreach($beritas as $berita)
             <tr>
                 <td>{{ $berita->tittle }}</td>
-            <td>{{ $berita->desc }}</td>
-            <td>{{ $berita->photo }}</td>
+                <td><img @if (is_null($berita->photo)) src="/assets/img/elements/no-image.png" @else src="{{ $berita->photo }}" @endif alt="thumbnail" width="70%"> </td>
+                <td>{{ Str::limit($berita->desc, 500) }}</td>
                 <td width="120">
                     {!! Form::open(['route' => ['beritas.destroy', $berita->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

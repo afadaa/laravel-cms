@@ -17,7 +17,7 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'beritas.store']) !!}
+            {!! Form::open(['route' => 'beritas.store', 'files' => true]) !!}
 
             <div class="card-body">
 

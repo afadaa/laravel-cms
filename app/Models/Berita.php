@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Berita extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     use HasFactory;
 
@@ -56,8 +56,8 @@ class Berita extends Model
      */
     public static $rules = [
         'tittle' => 'required|string|max:255',
-        'desc' => 'required|string|max:255',
-        'photo' => 'required|string|max:255',
+        // 'desc' => 'required|string|max:255',
+        // 'photo' => 'required|string|max:255',
         'created_at' => 'nullable',
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'

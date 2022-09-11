@@ -5,13 +5,13 @@
 </div>
 
 <!-- Desc Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('desc', 'Desc:') !!}
-    {!! Form::text('desc', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::textarea('desc', null, ['class' => 'form-control', 'id' => 'my-editor']) !!}
 </div>
 
 <!-- Photo Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('photo', 'Photo:') !!}
-    {!! Form::text('photo', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+    {!! Form::file('photo', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'enctype' => 'multipart/from-data','required']) !!}
 </div>
